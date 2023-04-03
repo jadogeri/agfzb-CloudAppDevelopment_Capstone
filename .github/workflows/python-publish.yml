@@ -1,39 +1,65 @@
-# This workflow will upload a Python Package using Twine when a release is created
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python#publishing-to-package-registries
-
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-
-name: Upload Python Package
+name: 'Lint Code'
 
 on:
-  release:
-    types: [published]
+  push:
+    branches: [master, main]
+  pull_request:
+    branches: [master, main]
 
-permissions:
-  contents: read
+jobs: # list of things to do
+  lint_function_js:
+    name: Linting JavaScript Function 
+    runs-on: ubuntu-latest 
+    steps: # list of steps
+      - name: Install NodeJS
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
 
-jobs:
-  deploy:
+      - name: Code Checkout
+        uses: actions/checkout@v3
 
-    runs-on: ubuntu-latest
+      - name: Install Dependencies
+        run: npm install
+        working-directory: functions/sample/nodejs
 
+      - name: Code Linting
+        run: npm run lint
+        working-directory: functions/sample/nodejs
+    
+
+  lint_function_python:
+    name: Linting Python Function 
+    runs-on: ubuntu-latest 
     steps:
-    - uses: actions/checkout@v3
-    - name: Set up Python
-      uses: actions/setup-python@v3
-      with:
-        python-version: '3.x'
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install build
-    - name: Build package
-      run: python -m build
-    - name: Publish package
-      uses: pypa/gh-action-pypi-publish@27b31702a0e7fc50959f5ad993c78deac1bdfc29
-      with:
-        user: __token__
-        password: ${{ secrets.PYPI_API_TOKEN }}
+      - uses: actions/checkout@v3
+      - name: Set up Python 3.7
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.7
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pylint
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+      - name: Lint with Pylint
+        run: pylint *.py
+        working-directory: functions/sample/python
+
+  lint_django_server:
+    name: Linting Django Server 
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python 3.7
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.7
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pylint
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+      - name: Lint with Pylint
+        run: pylint *.py
+        working-directory: server
