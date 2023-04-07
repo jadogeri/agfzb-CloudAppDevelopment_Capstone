@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 1 software as a service
 2 private
 3 hypervisor
@@ -43,3 +44,50 @@
    b deploys cloud-native applications
 44 after the invocation they wait for the
 45 it is used when fast efficient and reliable data transportation is required
+=======
+1 software as a service
+2 private
+3 hypervisor
+4 container
+5 block
+6 create the physical struc
+7 path to a website or page that the user inter
+8 <section>
+9 Convert between object and primitive lit
+10 newCustomer1
+11 Bitbucket
+12 centralized version control
+13 use the add command
+14 git-pull
+15 integrator
+16 scheduling and orchestration
+17 
+18 code is patched rather than replaced
+19 stateful applications
+20 rest api's
+21 standard representation of javascript objects
+22 complex ui
+23 require
+24 an object returned by an async
+25 assists the server in handling
+26
+27 provides logging monitoring and alerting solutions
+28 CMD
+29
+30 All of three
+31
+32 it corresponds to an HTML tag in the original HTML document
+33
+34 Appending and reading . Creates a new file if none
+35
+36 an entity,attributes
+37 when combined with django views , it 
+38 form-control
+39 orm bridges gap between oop and sql
+40 microservices
+42 core compute and processing engine
+43 a orchestrates containerized workloads
+   b deploys cloud-native applications
+44 after the invocation they wait for the
+45 it is used when fast efficient and reliable data transportation is required
+>>>>>>> f58f277baea4d69f1506773469380af82cc65b77
